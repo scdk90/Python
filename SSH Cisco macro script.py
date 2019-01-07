@@ -5,7 +5,7 @@ from netmiko import Netmiko
 while True:
     try:
         net_connect = Netmiko(host=input('Enter host ip: '),
-                              username='admin',
+                              username=input('Enter username: '),
                               password=getpass(),
                               device_type='cisco_ios'
                               )
