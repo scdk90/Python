@@ -70,5 +70,9 @@ while True:
     except Exception:
         print('Please select y/n')
 
+print('Saving configuration...')
+net_connect.send_command("copy running-config startup-config")
+
 print('Disconnecting...')
 net_connect.disconnect()
+
