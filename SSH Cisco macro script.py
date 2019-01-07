@@ -5,10 +5,10 @@ from netmiko import Netmiko
 while True:
     try:
         net_connect = Netmiko(host = input('Enter host ip: '),
-                              username = 'admin',
-                              password = getpass(),
-                              device_type = 'cisco_ios'
-                              )
+            username = 'admin',
+            password = getpass(),
+            device_type = 'cisco_ios'
+            )
         break
     except Exception:
         print('Incorrect host or password, please try again.')
