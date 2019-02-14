@@ -26,5 +26,5 @@ for ip in host:
 
     print('Host ' + str(ip) + ' is done')
     
-f.close()
+iplist.close()
 print(input('All done! Press enter to close'))
