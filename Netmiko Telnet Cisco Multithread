@@ -24,12 +24,15 @@ hosts = [
 ]
 
 def telnet_connection(device):
-    with ConnectHandler(**dict(default, **device)) as c:
-        c.enable()
-        result = c.find_prompt() + '\n'
-        result += c.send_command('show clock')
-        print(c.find_prompt() + '\n') #remove after testing
-    return result
+    try:
+        with ConnectHandler(**dict(default, **device)) as c:
+            c.enable()
+            result = c.find_prompt() + '\n'
+            result += c.send_command('show clock')
+            print(c.find_prompt() + '\n')
+        return result
+    except:
+        pass
 
 with Pool() as pool:
     for result in pool.map(telnet_connection, hosts):
