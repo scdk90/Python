@@ -29,7 +29,7 @@ def telnet_connection(device):
             c.enable()
             result = c.find_prompt() + '\n'
             result += c.send_command('show clock')
-            print(c.find_prompt() + '\n')
+            print(c.find_prompt() + '\n') #can be removed after testing
         return result
     except:
         pass
