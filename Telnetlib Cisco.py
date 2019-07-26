@@ -24,7 +24,7 @@ for ip in host:
     tn.write(b'wr')
     tn.close()
 
-    print('Host ' + str(ip) + ' is done')
+    print('Host ' + str(ip) + ' is completed')
     
 ip_list.close()
 print(input('All done! Press enter to exit'))
