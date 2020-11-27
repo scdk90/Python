@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# needs Pyats/Genie installed on linux!!!
+
 from netmiko import ConnectHandler
 import getpass
 
