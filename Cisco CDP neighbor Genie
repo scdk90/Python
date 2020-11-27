@@ -1,0 +1,68 @@
+#! /usr/bin/env python
+from netmiko import ConnectHandler
+import getpass
+
+username_input = input("Username: ")
+password_input = getpass.getpass(prompt="Password: ")
+
+with open('devices_test.txt') as f:
+    devices = f.read().splitlines()
+
+device_list = list()
+config_commands = []
+
+# create ConnectHandler for each device in the list
+for ip in devices:
+    cisco_device = {
+            'device_type': 'cisco_ios',
+            'ip': ip,
+            'username': username_input,
+            'password': password_input,
+            'port': '22',
+            'secret': password_input,
+            'verbose': True,
+    }
+    device_list.append(cisco_device)
+
+# loop for parsing each device and configuring interface description
+for device in device_list:
+    while True:
+        try:
+            with ConnectHandler(**device) as net_connect:
+                parser_output = net_connect.send_command("show cdp neighbors", use_genie=True)
+                parser_output = parser_output["cdp"]["index"]
+
+                for neighbor in parser_output:
+                    if parser_output[neighbor]["platform"] == "AIR-AP280":
+                        config_commands.append("interface " + parser_output[neighbor]["local_interface"])
+                        config_commands.append("description " + parser_output[neighbor]["device_id"])
+                    else:
+                        continue
+                    # net_connect.send_config_set(config_commands)
+                    # net_connect.send_command("wr")
+            break
+        except Exception:
+            print("Something broke")
+            break
+
+# for testing
+print(config_commands)
+
+input("Press enter to close")
+
+# output example for show cdp neighbor parser
+#{'cdp': {'index': {1: {'capability': 'R T',
+#                       'device_id': 'AP0001',
+#                       'hold_time': 123,
+#                       'local_interface': 'GigabitEthernet1/1',
+#                       'platform': 'AIR-AP280',
+#                       'port_id': 'GigabitEthernet0/1'},
+#                   2: {'capability': 'R T',
+#                       'device_id': 'AP0002,
+#                       'hold_time': 123,
+#                       'local_interface': 'GigabitEthernet1/2',
+#                       'platform': 'AIR-AP280',
+#                       'port_id': 'GigabitEthernet0/2'},
+#        }
+#    }
+#}
