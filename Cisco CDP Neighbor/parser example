@@ -1,0 +1,15 @@
+{'cdp': {'index': {1: {'capability': 'R T',
+                       'device_id': 'AP0001',
+                       'hold_time': 123,
+                       'local_interface': 'GigabitEthernet1/1',
+                       'platform': 'AIR-AP280',
+                       'port_id': 'GigabitEthernet0/1'},
+                   2: {'capability': 'R T',
+                       'device_id': 'AP0002,
+                       'hold_time': 123,
+                       'local_interface': 'GigabitEthernet1/2',
+                       'platform': 'AIR-AP280',
+                       'port_id': 'GigabitEthernet0/2'},
+        }
+    }
+}
