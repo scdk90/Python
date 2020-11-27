@@ -40,8 +40,9 @@ for device in device_list:
                         config_commands.append("description " + parser_output[neighbor]["device_id"])
                     else:
                         continue
-                    net_connect.send_config_set(config_commands)
-                    net_connect.send_command("wr")
+                
+                net_connect.send_config_set(config_commands)
+                net_connect.send_command("wr")
             break
         except Exception:
             print("Something broke")
