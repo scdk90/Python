@@ -11,7 +11,6 @@ with open('devices.txt') as f:
     devices = f.read().splitlines()
 
 device_list = list()
-config_commands = []
 
 # create ConnectHandler for each device in the list
 for ip_address in devices:
@@ -33,6 +32,8 @@ for device in device_list:
             with ConnectHandler(**device) as net_connect:
                 parser_output = net_connect.send_command("show cdp neighbors", use_genie=True)
                 parser_output = parser_output["cdp"]["index"]
+                
+                config_commands = []
 
                 for neighbor in parser_output:
                     if parser_output[neighbor]["platform"] == "AIR-AP280":
