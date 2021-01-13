@@ -45,8 +45,8 @@ for device in device_list:
                 net_connect.send_config_set(config_commands)
                 net_connect.send_command("wr")
             break
-        except Exception:
-            print("Something broke")
+        except Exception as error:
+            print(error)
             break
 
 input("Press enter to close")
