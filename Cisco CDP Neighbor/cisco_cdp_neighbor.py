@@ -43,7 +43,7 @@ for device in device_list:
                         continue
                 
                 net_connect.send_config_set(config_commands)
-                net_connect.send_command("wr")
+                net_connect.save_config()
             break
         except Exception as error:
             print(error)
