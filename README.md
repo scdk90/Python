@@ -1,4 +1,4 @@
 # Python
 python scripts
 
-Private used python scripts for Cisco networking hardware
+Private used python scripts for Networking an Home Automation
