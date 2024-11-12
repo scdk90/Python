@@ -1,3 +1,5 @@
+# compares device in Catalyst Center with device ip's from txt file and compares the difference.
+
 import requests
 from requests.auth import HTTPBasicAuth
 import urllib3
