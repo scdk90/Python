@@ -1,4 +1,4 @@
-# compares device in Catalyst Center with device ip's from txt file and compares the difference.
+# compares Switch devices in Catalyst Center with device ip's from txt file and compares the difference.
 
 import requests
 from requests.auth import HTTPBasicAuth
