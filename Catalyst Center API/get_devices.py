@@ -9,7 +9,7 @@ urllib3.disable_warnings()
 BASE_URL = 'https://catalyst.center.nl'
 AUTH_URL = '/dna/system/api/v1/auth/token'
 USERNAME = 'username'
-PASSWORD = getpass.getpass("Enter password for conscia-monitor: ")
+PASSWORD = getpass.getpass("Enter password for username: ")
 
 # Ask for the token and create the Headers
 response = requests.post(BASE_URL + AUTH_URL
