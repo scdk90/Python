@@ -29,7 +29,6 @@ response = requests.get(BASE_URL + DEVICES_URL
 # Add every ip address to a list
 list_cc = []
 for item in response.json()['response']:
-    #print(item['hostname'], item['managementIpAddress'])
     list_cc.append(item['managementIpAddress'])
 
 # Get list of devices with family 'Switches and Hubs' parameters, start from device number 500
@@ -41,7 +40,6 @@ response = requests.get(BASE_URL + DEVICES_URL
                         , verify=False)
 
 for item in response.json()['response']:
-    #print(item['hostname'], item['managementIpAddress'])
     list_cc.append(item['managementIpAddress'])
 
 # Get list of devices with family 'Switches and Hubs' parameters, start from device number 1000
@@ -53,7 +51,6 @@ response = requests.get(BASE_URL + DEVICES_URL
                         , verify=False)
 
 for item in response.json()['response']:
-    #print(item['hostname'], item['managementIpAddress'])
     list_cc.append(item['managementIpAddress'])
 
 # create list from management ip address text file
