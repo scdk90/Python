@@ -38,17 +38,13 @@ def get_endpoint_identity_groups():
 
 def get_macs_in_identity_group(group_id):
     headers = {'Accept': 'application/json'}
-
     # filter out group "Unknown"
     if group_id == "Unknown group id":
         return []
-
     #apply group id filter and size
     url = f"{ENDPOINTS_URL}?filter=groupId.EQ.{group_id}&size=100"
     mac_list = []
-
-    try:
-        
+    try:   
         # true until no nextpage found
         while url:
             response = requests.get(
@@ -56,56 +52,43 @@ def get_macs_in_identity_group(group_id):
                 auth=HTTPBasicAuth(USERNAME, PASSWORD),
                 headers=headers,
                 verify=False,
-            )
-
-            if response.status_code == 200:
-                
-                result = response.json()
-                
+            )            
+            if response.status_code == 200:                
+                result = response.json()                
                 for endpoint in result['SearchResult']['resources']:
                     mac_list.append(endpoint['name'])
-
                 # check for nextpage
                 try:
                     url = result['SearchResult']['nextPage']['href']
                 except:
                     url = False
-
             else:
                 print(f"Error: {response.status_code} - {response.text}")
                 return []
-
-        return mac_list
-    
+        return mac_list    
     except requests.RequestException as e:
         print(f"Request failed: {e}")
 
 
-if __name__ == '__main__':
-    
+if __name__ == '__main__':    
     visual = "#"
     endpointgroups_data = get_endpoint_identity_groups()
 
-    with open("endpoints.txt", "a") as file:
-        
+    with open("endpoints.txt", "a") as file:        
         for group in endpointgroups_data:
             file.write(group["name"])
-            file.write('\n')
-            
+            file.write('\n')            
             mac_data = get_macs_in_identity_group(group["id"])
             
             for mac_address in mac_data:
                 file.write(mac_address)
                 file.write('\n')
-            
+                
             file.write('\n')
-
             print(visual)
             visual += "#"
 
     print("End of script")
-
-
 
 # API filter options
 """
